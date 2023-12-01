@@ -103,9 +103,9 @@
             </div>
             <ul class="side-menu-content">
 
-                <li class="{{ (request()->is('roles')) ? 'active' : '' }}">
+                {{-- <li class="{{ (request()->is('roles')) ? 'active' : '' }}">
                     <a class="side-menu-item side-menu-item-text" href="{{ route('roles.index') }}">Role</a>
-                </li>
+                </li> --}}
 
 
                 <li class="{{ (request() -> is('users')) ? 'active' : '' }}">
