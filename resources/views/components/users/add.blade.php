@@ -28,30 +28,30 @@
                             @csrf
                             <div class="d-flex flex-column scroll-y me-n7 pe-7 mb-3">
                                 <div class="upload-information-container d-flex flex-column">
-
+                                    {{-- Name --}}
                                     <div class="row mb-4 mx-0 fv-row">
                                         <label class="required upload-description-title">User Name</label>
                                         <input type="text" class="form-control" id="user_name" name="name"></textarea>
                                     </div>
+                                    {{-- Email --}}
                                     <div class="row mb-4 mx-0 fv-row">
                                         <label class="required upload-description-title">User Email</label>
                                         <input type="text" class="form-control" id="email"
                                             name="email"></textarea>
                                     </div>
-                                    <div class="row mb-4 mx-0 fv-row">
+                                    {{-- Role --}}
+                                    {{-- <div class="row mb-4 mx-0 fv-row">
                                         <label class="required upload-description-title">Role</label>
                                         <select class="form-select" id="user_role" name="role_id">
                                             <option disabled selected>Choose Role</option>
                                             @foreach ($roles as $role )
                                                 <option value="{{ $role->id }}">{{ $role->name }}</option>
                                             @endforeach
-
-
                                         </select>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
-
+                            {{-- Confirmation --}}
                             <div class="text-center mt-4 modal-action">
                                 <button type="reset" class="btn btn-discard me-3" data-bs-dismiss="modal"
                                     data-users-modal-action="cancel">Discard</button>

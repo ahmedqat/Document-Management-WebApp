@@ -25,7 +25,9 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->role->name }}</td>
+
+                    {{-- Temporary Disabled --}}
+                    {{-- <td>{{ $user->role->name }}</td> --}}
                     <td>
                         <div class="dropdown text-center">
                             <a href class="dropdown-toggle btn btn-more" data-bs-toggle="dropdown"

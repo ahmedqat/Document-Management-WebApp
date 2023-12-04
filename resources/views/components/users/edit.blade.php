@@ -53,7 +53,7 @@
                             {{-- Role --}}
 
 
-                            <div class="row mb-4 mx-0 fv-row">
+                            {{-- <div class="row mb-4 mx-0 fv-row">
                                 <label class="required upload-description-title">Role</label>
                                 <select class="form-select" id="edit_user_role" name="edit_user_role">
                                     <option disabled selected>Choose Role</option>
@@ -72,7 +72,7 @@
 
                                 <p class="text-danger text-xs mt-1">{{ $message }}</p>
                                 @enderror
-                            </div>
+                            </div> --}}
 
 
 
