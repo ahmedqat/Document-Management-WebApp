@@ -6,6 +6,7 @@ use App\Http\Requests\AddUserRequest;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -14,9 +15,10 @@ class UserController extends Controller
 
 
         $users = User::all();
+        $roles = Role::all();
 
 
-        return view('users.show',compact('users'));
+        return view('users.show',compact('users','roles'));
     }
 
 
@@ -34,13 +36,19 @@ class UserController extends Controller
 
 
 
+
+
         // ]);
 
         $formFields = $request->validated();
 
 
 
-        User::create($formFields);
+
+
+        $user = User::create($formFields);
+
+        //$user->assignRole('Librarian');
 
         return  redirect()->back();
 
@@ -61,7 +69,7 @@ class UserController extends Controller
         $columnMapping = [
             'edit_user_name' => 'name',
             'edit_user_email' => 'email',
-            'edit_user_role' => 'role_id',
+            //'edit_user_role' => 'role_id',
         ];
 
         $mappedFields = [];
@@ -70,6 +78,8 @@ class UserController extends Controller
         }
 
         $user->update($mappedFields);
+
+        $user->syncRoles($formFields['edit_user_role']);
 
         return redirect()->back();
 

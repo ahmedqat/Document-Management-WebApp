@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\UserCreated;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,6 +16,11 @@ class User extends Authenticatable implements LdapAuthenticatable
 {
     use HasFactory, AuthenticatesWithLdap, Notifiable, HasRoles;
 
+
+
+
+    protected $guard_name = 'web';
+
     protected $fillable = [
 
         'name',
@@ -23,6 +29,17 @@ class User extends Authenticatable implements LdapAuthenticatable
         'role_id'
 
     ];
+
+    protected static function boot()
+    {
+
+        parent::boot();
+
+        static::created(function ($user) {
+            // Dispatch the event when a new user is created
+            event(new UserCreated($user));
+        });
+    }
 
     // public function role(){
 

@@ -5,7 +5,9 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Department;
-use App\Models\Role;
+//use App\Models\Role;
+
+use Spatie\Permission\Models\Role;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,8 +20,8 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
+        //     'name' => 'Test User'
+        //     'email' => 'test@example.com'
         // ]);
 
 
@@ -53,24 +55,24 @@ class DatabaseSeeder extends Seeder
 
 
         //1
-        $superAdminRole = Role::create(['name' => 'Super Admin','role_description' => 'Unrestricted Access']);
+        $superAdminRole = Role::create(['name' => 'Super Admin']);
         //2
-        $librarianRole = Role::create(['name' => 'Librarian', 'role_description' => 'Edit the Library Department']);
+        $librarianRole = Role::create(['name' => 'Librarian'  ]);
         //3
-        $itEdtitorRole = Role::create(['name' => 'IT Editor','role_description' => 'Edit the IT Department']);
+        $itEdtitorRole = Role::create(['name' => 'IT Editor' ]);
         //4
-        $adminRole = Role::create(['name' => 'Admin Editor', 'role_description' => 'Edit the Admin Department']);
+        $adminRole = Role::create(['name' => 'Admin Editor'  ]);
         //5
-        $financeRole = Role::create(['name' => 'Finance', 'role_description' => 'Edit the Finance Department']);
+        $financeRole = Role::create(['name' => 'Finance'  ]);
         //6
-        $researchRole = Role::create(['name' => 'Research', 'role_description' => 'Edit the Research Department']);
+        $researchRole = Role::create(['name' => 'Research' ]);
         //7
-        $hrRole = Role::create(['name' => 'HR', 'role_description' => 'Edit the Human Resources Department']);
+        $hrRole = Role::create(['name' => 'HR'  ]);
         //8
-        $pamoRole = Role::create(['name' => 'PAMO', 'role_description' => 'Edit the PAMO Department']);
+        $pamoRole = Role::create(['name' => 'PAMO' ]);
         //9
-        $oAA = Role::create(['name' => 'OAA', 'role_description' => 'Edit the Office of Academic Affairs Department']);
+        $oAA = Role::create(['name' => 'OAA'  ]);
         //10
-        $qa = Role::create(['name' => 'QA', 'role_description' => 'Edit the Quality Assurance Department']);
+        $qa = Role::create(['name' => 'QA' ]);
     }
 }

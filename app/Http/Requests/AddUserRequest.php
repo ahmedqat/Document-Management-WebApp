@@ -25,7 +25,7 @@ class AddUserRequest extends FormRequest
 
             'name' => 'required',
             'email' => ['required','email'],
-            'role_id' => 'required',
+            //'role_id' => 'required',
         ];
     }
 }

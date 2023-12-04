@@ -11,7 +11,7 @@
                     <th class="column-width-20">User ID</th>
                     <th>User Name</th>
                     <th>Email Address</th>
-                    {{-- <th>Role</th> --}}
+                    <th>Role</th>
                     <th class="text-center column-width-5">
                         <img class="btn-icon-more" src="assets/icons/more.png">
                     </th>
@@ -28,6 +28,13 @@
 
                     {{-- Temporary Disabled --}}
                     {{-- <td>{{ $user->role->name }}</td> --}}
+
+                    <td>
+                        @foreach ($user->roles as $role)
+                            {{ $role->name }}
+                            @if (!$loop->last) , @endif
+                        @endforeach
+                    </td>
                     <td>
                         <div class="dropdown text-center">
                             <a href class="dropdown-toggle btn btn-more" data-bs-toggle="dropdown"
@@ -55,7 +62,7 @@
                     </td>
                 </tr>
 
-                <x-users.edit :user="$user" :modalId="'modal-edit-'. $user->id"/>
+                <x-users.edit :user="$user" :modalId="'modal-edit-'. $user->id" :roles="$roles"/>
                 <x-users.delete :user="$user" :modalId="'modal_delete_' . $user->id"/>
 
 

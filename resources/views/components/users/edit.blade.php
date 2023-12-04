@@ -1,4 +1,4 @@
-@props(['user','modalId' => null])
+@props(['user','modalId' => null,'roles'])
 
 
 
@@ -12,8 +12,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" id="modal_edit_user_form" class="form"
-                    action="{{ route('users.update',$user) }}">
+                <form method="POST" id="modal_edit_user_form" class="form" action="{{ route('users.update',$user) }}">
                     @method('PUT')
                     @csrf
 
@@ -75,6 +74,24 @@
                             </div> --}}
 
 
+                            {{-- Role --}}
+                            <div class="row mb-4 mx-0 fv-row">
+                                <label class="required upload-description-title">Role</label>
+                                <select class="form-select" id="edit_user_role" name="edit_user_role">
+                                    <option disabled selected>Choose Role</option>
+
+                                    @foreach ($roles as $role)
+                                    <option value="{{ $role->name }}" @if($user->hasRole($role->name)) selected
+                                        @endif>{{ $role->name }}</option>
+                                    @endforeach
+                                </select>
+
+                                @error('edit_user_role','user_update')
+                                <p class="text-danger text-xs mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+
 
 
 
@@ -95,13 +112,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
