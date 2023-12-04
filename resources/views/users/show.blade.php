@@ -1,6 +1,6 @@
 <x-layout>
 
-    <x-users.add/>
+    <x-users.add :roles="$roles"/>
     <div class="content-body-table">
         <div class="body-table-title">
             User List
@@ -8,8 +8,8 @@
         <table class="table table-striped table-hover" id="all_department">
             <thead>
                 <tr>
-                    <th class="column-width-20">User ID</th>
-                    <th>User Name</th>
+                    <th class="column-width-20">User Name</th>
+                    <th>Name</th>
                     <th>Email Address</th>
                     <th>Role</th>
                     <th class="text-center column-width-5">
@@ -22,7 +22,7 @@
 
 
                 <tr>
-                    <td>{{ $user->id }}</td>
+                    <td>{{ $user->username }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
 

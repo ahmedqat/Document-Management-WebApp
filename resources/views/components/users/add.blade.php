@@ -1,3 +1,5 @@
+@props(['roles'])
+
 <div class="content-body">
 
 
@@ -28,14 +30,22 @@
                             @csrf
                             <div class="d-flex flex-column scroll-y me-n7 pe-7 mb-3">
                                 <div class="upload-information-container d-flex flex-column">
-                                    {{-- Name --}}
+
+                                    {{-- UserName --}}
                                     <div class="row mb-4 mx-0 fv-row">
                                         <label class="required upload-description-title">User Name</label>
+                                        <input type="text" class="form-control" id="user_name" name="username"></textarea>
+                                    </div>
+
+
+                                    {{-- Name --}}
+                                    <div class="row mb-4 mx-0 fv-row">
+                                        <label class="required upload-description-title">Name</label>
                                         <input type="text" class="form-control" id="user_name" name="name"></textarea>
                                     </div>
                                     {{-- Email --}}
                                     <div class="row mb-4 mx-0 fv-row">
-                                        <label class="required upload-description-title">User Email</label>
+                                        <label class="required upload-description-title">Email</label>
                                         <input type="text" class="form-control" id="email"
                                             name="email"></textarea>
                                     </div>
@@ -49,6 +59,29 @@
                                             @endforeach
                                         </select>
                                     </div> --}}
+                                    <div class="row mb-4 mx-0 fv-row">
+                                        <label class=" upload-description-title">Role</label>
+                                        <select class="form-select" id="user_role" name="role">
+                                            <option disabled selected>Choose Role</option>
+                                            @foreach ($roles as $role)
+                                                <option value="{{ $role->name }}">{{ $role->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    {{-- Password --}}
+                                    <div class="row mb-4 mx-0 fv-row">
+                                        <label class="required upload-description-title">Password</label>
+                                        <input type="password" class="form-control" id="user_password" name="password"></textarea>
+                                    </div>
+
+
+                                    {{-- Password Confir --}}
+                                    <div class="row mb-4 mx-0 fv-row">
+                                        <label class="required upload-description-title">Confirm Password</label>
+                                        <input type="password" class="form-control" id="user_confirm_password" name="password_confirmation"></textarea>
+                                    </div>
+
                                 </div>
                             </div>
                             {{-- Confirmation --}}

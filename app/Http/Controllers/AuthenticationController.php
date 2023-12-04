@@ -40,7 +40,12 @@ class AuthenticationController extends Controller
         $credentials = [
 
             'uid' => $request->get('campus_id'),
-            'password' => $request->get('campus_password')
+            'password' => $request->get('campus_password'),
+            'fallback' => [
+
+                'username' => $request->get('campus_id'),
+                'password' => $request->get('campus_password'),
+            ]
 
 
         ];
@@ -49,17 +54,13 @@ class AuthenticationController extends Controller
 
         if (Auth::attempt($credentials)) {
             $ldapUser = Auth::user();
-
             //dd($ldapUser);
-
             //  $localUser = User::where('username',$ldapUser->getUsername())->first();
-
-
-
-
-
             return redirect()->intended('/');
         }
+
+
+
 
         return redirect()->back()->withInput($request->only('campus_id'))->with('login_error', 'Invalid Credentials.');
     }

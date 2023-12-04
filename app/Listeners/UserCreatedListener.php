@@ -25,7 +25,13 @@ class UserCreatedListener implements ShouldQueue
     public function handle(UserCreated $event): void
     {
 
+        if(!$event->user->hasAllRoles(Role::all())){
+
+
             $event->user->assignRole('Librarian');
+        }
+
+
 
     }
 }

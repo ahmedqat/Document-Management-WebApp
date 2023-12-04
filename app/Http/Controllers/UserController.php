@@ -25,30 +25,32 @@ class UserController extends Controller
     public function upload(AddUserRequest $request){
 
 
-       // dd($request->all());
-
+       //dd($request->all());
         // $formFields = $request->validateWithBag('user_upload',[
 
         //     'id' => 'required',
         //     'name' => 'required',
         //     'email' => ['required','email'],
         //     'role_id' => 'required',
-
-
-
-
-
         // ]);
 
         $formFields = $request->validated();
 
 
 
+        if ($request->filled('password')) {
+            $formFields['password'] = bcrypt($request->input('password'));
+        }
+
 
 
         $user = User::create($formFields);
 
-        //$user->assignRole('Librarian');
+        if($request->filled('role')){
+            $user->syncRoles($request->input('role'));
+        }
+
+        //$user->syncRoles($request->input('role'));
 
         return  redirect()->back();
 
