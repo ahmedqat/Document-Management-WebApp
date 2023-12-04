@@ -11,7 +11,7 @@
                     <th class="column-width-20">User ID</th>
                     <th>User Name</th>
                     <th>Email Address</th>
-                    <th>Role</th>
+                    {{-- <th>Role</th> --}}
                     <th class="text-center column-width-5">
                         <img class="btn-icon-more" src="assets/icons/more.png">
                     </th>

@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use LdapRecord\Laravel\Auth\LdapAuthenticatable;
 use LdapRecord\Laravel\Auth\AuthenticatesWithLdap;
-
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements LdapAuthenticatable
 {
-    use HasFactory, AuthenticatesWithLdap, Notifiable;
+    use HasFactory, AuthenticatesWithLdap, Notifiable, HasRoles;
 
     protected $fillable = [
 
