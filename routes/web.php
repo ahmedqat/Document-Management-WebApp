@@ -91,6 +91,19 @@ Route::delete('/users/{user}',[UserController::class,'delete'])->name('users.del
 
 
 
+//Departments
+
+
+//Show Table
+
+Route::get('/departments',[DepartmentController::class,'index'])->name('departments.index');
+
+
+//Upload New Department
+
+Route::post('/departments/create',[DepartmentController::class,'upload'])->name('departments.upload');
+
+
 
 
 
@@ -109,12 +122,12 @@ Route::delete('/users/{user}',[UserController::class,'delete'])->name('users.del
 
 //Department Views
 
-Route::get('/departments/{department}',[DepartmentController::class,'deb'])->name('departments.department');
+//Route::get('/departments/{department}',[DepartmentController::class,'deb'])->name('departments.department');
 
 
 //Show Documents in Department
 
-Route::get('/departments/{department}/documents',[DocumentController::class, 'show']) -> name('documents.show');
+Route::get('/departments/{department}',[DocumentController::class, 'show']) -> name('documents.show');
 
 
 //Upload Documents

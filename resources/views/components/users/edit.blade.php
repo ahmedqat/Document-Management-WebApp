@@ -81,8 +81,10 @@
                                     <option disabled selected>Choose Role</option>
 
                                     @foreach ($roles as $role)
+                                    @if ($role->name !== 'Default')
                                     <option value="{{ $role->name }}" @if($user->hasRole($role->name)) selected
                                         @endif>{{ $role->name }}</option>
+                                    @endif
                                     @endforeach
                                 </select>
 

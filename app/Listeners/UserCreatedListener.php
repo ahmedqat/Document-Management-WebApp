@@ -28,7 +28,7 @@ class UserCreatedListener implements ShouldQueue
         if(!$event->user->hasAllRoles(Role::all())){
 
 
-            $event->user->assignRole('Librarian');
+            $event->user->assignRole('Default');
         }
 
 

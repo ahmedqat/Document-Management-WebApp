@@ -178,6 +178,7 @@
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
 
     {!! JsValidator::formRequest('App\Http\Requests\UploadDocumentRequest','#modal_upload_form')!!}
+    {!! JsValidator::formRequest('App\Http\Requests\AddDepartmentRequest','#modal_add_departments_form')!!}
     {!! JsValidator::formRequest('App\Http\Requests\AddUserRequest','#modal_user_form')!!}
     {{-- {!! JsValidator::formRequest('App\Http\Requests\EditDocumentRequest','#modal_edit_form')!!} --}}
     {!! JsValidator::formRequest('App\Http\Requests\AddRoleRequest','#modal_roles_form')!!}

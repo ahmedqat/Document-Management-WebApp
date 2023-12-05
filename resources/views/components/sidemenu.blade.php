@@ -82,7 +82,7 @@
                 </li> --}}
 
 
-                <li class="{{ (request()->is('departments/' . $department->id . '*')) ? 'active' : ''}}">
+                <li class="{{ (request()->is('departments/' . $department->id)) ? 'active' : ''}}">
 
                     <a class="side-menu-item side-menu-item-text"
                         href="{{ route('documents.show' , ['department' => $department]) }}">{{
@@ -111,6 +111,14 @@
                 <li class="{{ (request() -> is('users')) ? 'active' : '' }}">
                     <a class="side-menu-item side-menu-item-text" href="{{ route('users.index') }}">User</a>
                 </li>
+
+
+                <li class="{{ (request() -> is('departments')) ? 'active' : '' }}">
+                    <a class="side-menu-item side-menu-item-text" href="{{ route('departments.index') }}">Departments</a>
+                </li>
+
+
+
 
                 <li>
                     <a class="side-menu-item side-menu-item-text" href="access.html">Access Right</a>

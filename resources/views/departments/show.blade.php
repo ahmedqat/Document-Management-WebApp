@@ -1,5 +1,8 @@
 <x-layout>
-    <x-docs.upload />
+    @can("modify_{$department->id}")
+        <x-docs.upload />
+    @endcan
+
 
     {{-- Table goes here --}}
 
@@ -14,9 +17,13 @@
                     <th>Description</th>
                     <th>Department</th>
                     <th>File</th>
-                    <th class="text-center column-width-5">
+
+                    @can("modify_{$department->id}")
+                        <th class="text-center column-width-5">
                         <img class="btn-icon-more" src="{{ asset('assets/icons/more.png') }}">
                     </th>
+                    @endcan
+
                 </tr>
             </thead>
             <tbody>
@@ -36,7 +43,8 @@
                     <td>
                         <p>No Documents Uploaded</p>
                     </td>
-                    <td>
+                    @can("modify_{$department->id}")
+                       <td>
                         <div class="dropdown-menu dropdown-menu-end">
                             <ul class="content-dropdown-list list-unstyled">
                                 <li>
@@ -57,6 +65,8 @@
                             </ul>
                         </div>
                     </td>
+                    @endcan
+
                 </tr>
 
 
@@ -76,8 +86,8 @@
 
 
                     </td>
-
-                    <td>
+                    @can("modify_{$department->id}")
+                       <td>
                         <div class="dropdown text-center">
                             <a href class="dropdown-toggle btn btn-more" data-bs-toggle="dropdown"
                                 aria-expanded="false">
@@ -106,6 +116,8 @@
                             </div>
                         </div>
                     </td>
+                    @endcan
+
                 </tr>
 
 
