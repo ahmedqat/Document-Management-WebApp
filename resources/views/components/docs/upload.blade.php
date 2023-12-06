@@ -55,16 +55,14 @@
                                         <select class="form-select" id="upload_department" name="department_id">
                                             <option disabled selected>Choose Department</option>
 
-
                                             @foreach ($departments as $department )
 
+
                                             {{-- <option value="{{ $department->id }}">{{ $department->name }}</option> --}}
+
                                             <option value="{{ $department->id }}" @if(old('department_id')==$department->id)
                                                 selected @endif>{{ $department->name }}</option>
                                             @endforeach
-
-
-
                                         </select>
 
                                         @error('department_id','upload')
@@ -72,6 +70,11 @@
                                         <p class="text-danger text-xs mt-1">{{ $message }}</p>
                                         @enderror
                                     </div>
+
+
+
+
+
 
                                     {{-- Description --}}
                                     <div class="row mb-4 mx-0 fv-row">

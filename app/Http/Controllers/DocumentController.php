@@ -8,6 +8,7 @@ use App\Models\Department;
 use App\Models\Document;
 use Illuminate\Validation\Rule as ValidationRule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DocumentController extends Controller
 {
@@ -38,6 +39,15 @@ class DocumentController extends Controller
         //     'path' => ['required',ValidationRule::unique('documents','path')],
 
         // ]);
+
+            //dd($request->all());
+
+            $departmentID = $request->input('department_id');
+
+            //dd($departmentID);
+        if(!Auth::user()->can("modify_$departmentID")){
+            return redirect()->back()->with('message',"You don't have permission to modify this department.");
+        }
 
 
         $formFields = $request->validated();
@@ -75,6 +85,10 @@ class DocumentController extends Controller
 
     public function update(Request $request, Document $document)
     {
+
+        if(!Auth::user()->can('modify_{$department->id}')){
+            return redirect()->back()->with('message',"You don't have permission to modify {$department->name}");
+        }
 
         $formFields = $request->validateWithBag('update', [
 
@@ -127,6 +141,10 @@ class DocumentController extends Controller
 
     public function delete(Document $document)
     {
+
+        if(!Auth::user()->can('modify_{$department->id}')){
+            return redirect()->back()->with('message',"You don't have permission to modify {$department->name}");
+        }
 
 
         $document->delete();

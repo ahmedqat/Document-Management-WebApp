@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccessController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DocumentController;
@@ -26,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 
 //show login page
 
-Route::get('/login',[AuthenticationController::class,'show'])->name('login.show');
+Route::get('/login',[AuthenticationController::class,'show'])->name('login.show')->middleware('guest');
 
 //Auth User
 
@@ -63,6 +64,15 @@ Route::delete('/users/{user}',[UserController::class,'delete'])->name('users.del
 
 
 
+
+//Access
+
+
+//Show the table
+Route::get('/access',[AccessController::class,'show'])->name('access.index');
+
+//Update Permissions as Submitted
+Route::post('/access/update',[AccessController::class,'modAccess'])->name('access.update');
 
 
 

@@ -97,6 +97,9 @@
             </ul>
         </div>
         <!-- Side Menu Bottom -->
+        @if (auth()->check() && auth()->user()->hasRole('Super Admin'))
+
+
         <div class="side-menu-bottom">
             <div class="side-menu-title">
                 Admin
@@ -120,10 +123,11 @@
 
 
 
-                <li>
-                    <a class="side-menu-item side-menu-item-text" href="access.html">Access Right</a>
+                <li class="{{ (request() -> is('access')) ? 'active' : '' }}">
+                    <a class="side-menu-item side-menu-item-text" href="{{ route('access.index') }}">Access</a>
                 </li>
             </ul>
         </div>
+        @endif
     </div>
 </div>
