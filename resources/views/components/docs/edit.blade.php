@@ -1,4 +1,4 @@
-@props(['document','modalId' => null])
+@props(['document','modalId' => null, 'departmentID'])
 
 
 
@@ -33,6 +33,11 @@
                                 <p class="text-danger text-xs mt-1">{{ $message }}</p>
                                 @enderror
                             </div>
+
+
+                            {{-- Department ID --}}
+
+                            <input type="hidden" name="department_id" value="{{ $departmentID }}">
 
 
                             {{-- ID this is onnly for debugging......

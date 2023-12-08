@@ -11,7 +11,7 @@
             <table class="table table-striped table-hover" id="all_department">
                 <thead>
                     <tr>
-                        <th class="column-width-19">Group Name</th>
+                        <th class="column-width-19">Role</th>
                         @foreach($departments as $department)
                         <th class="column-width-9 text-center">{{ $department->name }}</th>
                         @endforeach
@@ -21,7 +21,7 @@
                     @foreach($roles as $role)
                     @if (!in_array($role->name, ['Super Admin', 'Default']))
                     <tr>
-                        <td>{{ $role->name }}</td>
+                        <td>{{ $role->name }} Role</td>
                         @foreach($departments as $department)
                         <td class="text-center align-middle">
                             @php

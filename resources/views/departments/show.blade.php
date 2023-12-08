@@ -121,8 +121,8 @@
                 </tr>
 
 
-                <x-docs.edit :document="$document" :modalId="'modal-edit-' .$document->id" />
-                <x-docs.delete :document="$document" :modalId=" 'modal_delete_' .$document->id " />
+                <x-docs.edit :document="$document" :modalId="'modal-edit-' .$document->id" :departmentID="$department->id" />
+                <x-docs.delete :document="$document" :modalId=" 'modal_delete_' .$document->id" :departmentID="$department->id" />
 
 
                 @endforeach

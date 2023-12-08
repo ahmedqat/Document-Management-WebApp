@@ -86,8 +86,12 @@ class DocumentController extends Controller
     public function update(Request $request, Document $document)
     {
 
-        if(!Auth::user()->can('modify_{$department->id}')){
-            return redirect()->back()->with('message',"You don't have permission to modify {$department->name}");
+        $departmentID = $request->input('department_id');
+
+
+
+        if(!Auth::user()->can("modify_$departmentID")){
+            return redirect()->back()->with('message',"You don't have permission to modify this department.");
         }
 
         $formFields = $request->validateWithBag('update', [
@@ -139,11 +143,15 @@ class DocumentController extends Controller
 
     //Delete Document
 
-    public function delete(Document $document)
+    public function delete(Document $document,Request $request)
     {
 
-        if(!Auth::user()->can('modify_{$department->id}')){
-            return redirect()->back()->with('message',"You don't have permission to modify {$department->name}");
+        $departmentID = $request->input('department_id');
+
+
+
+        if(!Auth::user()->can("modify_$departmentID")){
+            return redirect()->back()->with('message',"You don't have permission to modify this department.");
         }
 
 

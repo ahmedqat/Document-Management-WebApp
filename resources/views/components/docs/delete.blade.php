@@ -1,4 +1,4 @@
-@props(['document' , 'modalId' => null])
+@props(['document' , 'modalId' => null, 'departmentID'])
 
 
 
@@ -20,6 +20,12 @@
                 <form action="{{ route('documents.delete',$document) }}" method="POST">
                     @csrf
                     @method('DELETE')
+
+                    {{-- Department ID --}}
+
+                    <input type="hidden" name="department_id" value="{{ $departmentID }}">
+
+
 
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
