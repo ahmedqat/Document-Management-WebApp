@@ -8,19 +8,19 @@ use App\Models\User;
 
 class AuthenticationController extends Controller
 {
-    //
-    public function show()
+    //Show the login screen.
+    public function index()
     {
         return view('auth.login');
     }
 
 
 
-
+    //Utilize data and authenticate the user via LDAP or DB
     public function authenticate(Request $request)
     {
 
-        // dd($request->all());
+
 
         $request->validate([
 
@@ -29,7 +29,7 @@ class AuthenticationController extends Controller
 
 
 
-        ],[
+        ], [
             'campus_id.required' => 'Please enter your Campus ID.',
             'campus_password.required' => 'Please enter your password'
 
@@ -41,6 +41,7 @@ class AuthenticationController extends Controller
 
             'uid' => $request->get('campus_id'),
             'password' => $request->get('campus_password'),
+            //Fallback in case LDAP is unavailable.
             'fallback' => [
 
                 'username' => $request->get('campus_id'),
@@ -51,22 +52,21 @@ class AuthenticationController extends Controller
         ];
 
 
+        //Attempt to login.
 
         if (Auth::attempt($credentials)) {
             $ldapUser = Auth::user();
-            //dd($ldapUser);
-            //  $localUser = User::where('username',$ldapUser->getUsername())->first();
             return redirect()->intended('/');
         }
 
 
 
-
+        //Incase login fails.
         return redirect()->back()->withInput($request->only('campus_id'))->with('login_error', 'Invalid Credentials.');
     }
 
 
-
+    //Log the user out and invalidate the session.
     public function logout(Request $request)
     {
 

@@ -16,11 +16,11 @@ class DocumentController extends Controller
 
     //shows the documents and takes two variable the current department and its documents.
 
-    public function show(Department $department)
+    public function index(Department $department)
     {
         $documents = $department->documents()->paginate(10);
 
-        return view('departments.show', compact('documents', 'department'));
+        return view('documents.index', compact('documents', 'department'));
     }
 
 
@@ -29,24 +29,11 @@ class DocumentController extends Controller
     public function upload(Department $department, UploadDocumentRequest $request)
     {
 
+        $departmentID = $request->input('department_id');
 
-
-        // $formFields = $request->validateWithBag('upload',[
-
-        //     'title' => ['required',ValidationRule::unique('documents','title')],
-        //     'department_id' => 'required',
-        //     'description' => 'required',
-        //     'path' => ['required',ValidationRule::unique('documents','path')],
-
-        // ]);
-
-            //dd($request->all());
-
-            $departmentID = $request->input('department_id');
-
-            //dd($departmentID);
-        if(!Auth::user()->can("modify_$departmentID")){
-            return redirect()->back()->with('message',"You don't have permission to modify this department.");
+        //dd($departmentID);
+        if (!Auth::user()->can("modify_$departmentID")) {
+            return redirect()->back()->with('error', "You don't have permission to modify this department.");
         }
 
 
@@ -68,15 +55,11 @@ class DocumentController extends Controller
         $formFields['file_name'] = $originalFileName;
 
 
-
-
-
-
         Document::create($formFields);
 
 
 
-        return redirect()->back();
+        return redirect()->back()->with('success','Added Document Successfully.');
     }
 
 
@@ -85,78 +68,56 @@ class DocumentController extends Controller
 
     public function update(Request $request, Document $document)
     {
-
         $departmentID = $request->input('department_id');
 
-
-
-        if(!Auth::user()->can("modify_$departmentID")){
-            return redirect()->back()->with('message',"You don't have permission to modify this department.");
+        // Check permission
+        if (!Auth::user()->can("modify_$departmentID")) {
+            return redirect()->back()->with('error', "You don't have permission to modify this department.");
         }
 
+        // Validate form fields
         $formFields = $request->validateWithBag('update', [
-
             'edit_title' => 'required',
-            'edit_department_id' => 'required',
             'edit_description' => 'required',
-
+            //'path' => 'nullable|file|mimes:pdf,doc,docx', // Adjust file types as needed
         ]);
 
-        //$formFields = $request->validated();
+        // Update document
+        $document->title = $formFields['edit_title'];
+        $document->description = $formFields['edit_description'];
 
-
-
-
-
+        // Update file if provided
         if ($request->hasFile('path')) {
             $file = $request->file('path');
             $originalFileName = $file->getClientOriginalName();
             $newFileName = uniqid() . '.' . $file->getClientOriginalExtension();
             $formFields['path'] = $file->storeAs('docs', $newFileName, 'public');
-            $formFields['file_name'] = $originalFileName;
+            $document->file_name = $originalFileName;
         }
 
+        $document->save();
 
-
-        $columnMapping = [
-            'edit_title' => 'title',
-            'edit_department_id' => 'department_id',
-            'edit_description' => 'description',
-        ];
-
-        $mappedFields = [];
-        foreach ($columnMapping as $formField => $dbColumn) {
-            $mappedFields[$dbColumn] = $formFields[$formField];
-        }
-
-
-
-
-
-        $document->update($mappedFields);
-
-
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Edit Completed Successfully.');
     }
 
 
 
-    //Delete Document
+    //Delete Document from the database.
 
-    public function delete(Document $document,Request $request)
+    public function delete(Document $document, Request $request)
     {
 
         $departmentID = $request->input('department_id');
 
 
 
-        if(!Auth::user()->can("modify_$departmentID")){
-            return redirect()->back()->with('message',"You don't have permission to modify this department.");
+        if (!Auth::user()->can("modify_$departmentID")) {
+            return redirect()->back()->with('error', "You don't have permission to modify this department.");
         }
 
 
         $document->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('success','Deleted the document successfully.');
     }
 }

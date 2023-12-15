@@ -1,6 +1,6 @@
 <x-layout>
 
-    <x-users.add :roles="$roles"/>
+    <x-users.add :roles="$roles" />
     <div class="content-body-table">
         <div class="body-table-title">
             User List
@@ -25,14 +25,10 @@
                     <td>{{ $user->username }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-
-                    {{-- Temporary Disabled --}}
-                    {{-- <td>{{ $user->role->name }}</td> --}}
-
                     <td>
                         @foreach ($user->roles as $role)
-                            {{ $role->name }}
-                            @if (!$loop->last) , @endif
+                        {{ $role->name }}
+                        @if (!$loop->last) , @endif
                         @endforeach
                     </td>
                     <td>
@@ -45,14 +41,16 @@
                                 <ul class="content-dropdown-list list-unstyled">
                                     <li>
                                         <a href="#" class="btn btn-danger text-light" data-bs-toggle="modal"
-                                        data-bs-target="#modal_delete_{{ $user->id }}">
-                                            <img class="dropdown-list-btn-icon" src="{{ asset('assets/icons/delete.png') }}">
+                                            data-bs-target="#modal_delete_{{ $user->id }}">
+                                            <img class="dropdown-list-btn-icon"
+                                                src="{{ asset('assets/icons/delete.png') }}">
                                             <span>Delete</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#modal-edit-{{ $user->id }}" >
-                                            <img class="dropdown-list-btn-icon" src="{{ asset('assets/icons/pencil.png') }}">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#modal-edit-{{ $user->id }}">
+                                            <img class="dropdown-list-btn-icon"
+                                                src="{{ asset('assets/icons/pencil.png') }}">
                                             <span>Edit</span>
                                         </a>
                                     </li>
@@ -61,28 +59,23 @@
                         </div>
                     </td>
                 </tr>
-
-                <x-users.edit :user="$user" :modalId="'modal-edit-'. $user->id" :roles="$roles"/>
-                <x-users.delete :user="$user" :modalId="'modal_delete_' . $user->id"/>
-
-
+                <x-users.edit :user="$user" :modalId="'modal-edit-'. $user->id" :roles="$roles" />
+                <x-users.delete :user="$user" :modalId="'modal_delete_' . $user->id" />
                 @endforeach
-
-
             </tbody>
         </table>
     </div>
 
     @if (count($errors->user_update) > 0)
-        <script>
-            $(document).ready(function() {
+    <script>
+        $(document).ready(function() {
             // Retrieve the modal ID from the hidden input field
             var modalId = @json(old('modal_id'));
 
             // Show the specific modal associated with the retrieved modal ID
             $('#' + modalId).modal('show');
         });
-        </script>
-        @endif
+    </script>
+    @endif
 
 </x-layout>

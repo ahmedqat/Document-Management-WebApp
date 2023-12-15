@@ -1,11 +1,9 @@
 <x-layout>
     @can("modify_{$department->id}")
-        <x-docs.upload />
+    <x-docs.upload />
     @endcan
 
-
     {{-- Table goes here --}}
-
     <div class="content-body-table">
         <div class="body-table-title">
             Documents for {{ $department->name }}
@@ -17,19 +15,15 @@
                     <th>Description</th>
                     <th>Department</th>
                     <th>File</th>
-
                     @can("modify_{$department->id}")
-                        <th class="text-center column-width-5">
+                    <th class="text-center column-width-5">
                         <img class="btn-icon-more" src="{{ asset('assets/icons/more.png') }}">
                     </th>
                     @endcan
-
                 </tr>
             </thead>
             <tbody>
-
                 @if (count($documents) == 0)
-
                 <tr>
                     <td>
                         <p>No Documents Uploaded</p>
@@ -44,7 +38,7 @@
                         <p>No Documents Uploaded</p>
                     </td>
                     @can("modify_{$department->id}")
-                       <td>
+                    <td>
                         <div class="dropdown-menu dropdown-menu-end">
                             <ul class="content-dropdown-list list-unstyled">
                                 <li>
@@ -60,34 +54,25 @@
                                             src="{{ asset('assets/icons/pencil.png') }}">
                                         <span>Edit</span>
                                     </a>
-
                                 </li>
                             </ul>
                         </div>
                     </td>
                     @endcan
-
                 </tr>
-
-
                 @endif
-
-
                 @foreach ($documents as $document)
                 <tr>
                     <td>{{ $document->title }}</td>
                     <td>{{ $document->description }}</td>
                     <td>{{ $department->name }}</td>
                     <td>
-
                         <a href="{{ asset('storage/' . $document->path) }}" download="{{ $document->file_name }}">
                             {{ $document->file_name}}
                         </a>
-
-
                     </td>
                     @can("modify_{$department->id}")
-                       <td>
+                    <td>
                         <div class="dropdown text-center">
                             <a href class="dropdown-toggle btn btn-more" data-bs-toggle="dropdown"
                                 aria-expanded="false">
@@ -110,43 +95,31 @@
                                                 src="{{ asset('assets/icons/pencil.png') }}">
                                             <span>Edit</span>
                                         </a>
-
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </td>
                     @endcan
-
                 </tr>
-
-
-                <x-docs.edit :document="$document" :modalId="'modal-edit-' .$document->id" :departmentID="$department->id" />
-                <x-docs.delete :document="$document" :modalId=" 'modal_delete_' .$document->id" :departmentID="$department->id" />
-
-
+                <x-docs.edit :document="$document" :modalId="'modal-edit-' .$document->id"
+                    :departmentID="$department->id" />
+                <x-docs.delete :document="$document" :modalId=" 'modal_delete_' .$document->id"
+                    :departmentID="$department->id" />
                 @endforeach
             </tbody>
         </table>
-
+        {{-- Script for dataTables to generate a good looking table --}}
         <script>
             var numColumns = $('#documentTable').find('thead th').length;
 
             var columnDefinitions = Array(numColumns).fill({ "orderable": false });
-
-
             $('#documentTable').DataTable({
 
             "pageLength":10,
             "columns": columnDefinitions,
-
-
-
         });
         </script>
-
-
-
         @if (count($errors->update) > 0)
         <script>
             $(document).ready(function() {
@@ -158,7 +131,4 @@
         });
         </script>
         @endif
-
-
-
 </x-layout>

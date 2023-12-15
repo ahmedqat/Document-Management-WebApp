@@ -1,11 +1,7 @@
 @props(['roles'])
 
 <div class="content-body">
-
-
     @auth
-
-
     <!-- Upload Button -->
     <div class="content-upload position-absolute end-0 mt-2">
         <div class="upload-btn-container">
@@ -15,9 +11,7 @@
             </a>
         </div>
     </div>
-
     @endauth
-
     <div class="modal fade" id="modal_user" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-width">
             <div class="modal-content">
@@ -36,8 +30,6 @@
                                     <label class="required upload-description-title">User Name</label>
                                     <input type="text" class="form-control" id="user_name" name="username"></textarea>
                                 </div>
-
-
                                 {{-- Name --}}
                                 <div class="row mb-4 mx-0 fv-row">
                                     <label class="required upload-description-title">Name</label>
@@ -49,15 +41,6 @@
                                     <input type="text" class="form-control" id="email" name="email"></textarea>
                                 </div>
                                 {{-- Role --}}
-                                {{-- <div class="row mb-4 mx-0 fv-row">
-                                    <label class="required upload-description-title">Role</label>
-                                    <select class="form-select" id="user_role" name="role_id">
-                                        <option disabled selected>Choose Role</option>
-                                        @foreach ($roles as $role )
-                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div> --}}
                                 <div class="row mb-4 mx-0 fv-row">
                                     <label class=" upload-description-title">Role</label>
                                     <select class="form-select" id="user_role" name="role">
@@ -76,8 +59,6 @@
                                     <input type="password" class="form-control" id="user_password"
                                         name="password"></textarea>
                                 </div>
-
-
                                 {{-- Password Confir --}}
                                 <div class="row mb-4 mx-0 fv-row">
                                     <label class="required upload-description-title">Confirm Password</label>

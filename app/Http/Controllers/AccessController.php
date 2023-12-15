@@ -9,6 +9,8 @@ use Spatie\Permission\Models\Role;
 
 class AccessController extends Controller
 {
+
+    //Show the access table.
     public function show()
     {
         $departments = Department::all();
@@ -17,56 +19,21 @@ class AccessController extends Controller
         return view('access.index', compact('departments', 'roles'));
     }
 
-
-
-
-    // public function modAccess(Request $request)
-    // {
-
-    //     dd($request->all());
-    //     $permissions = $request->input('permissions');
-
-    //     //dd($permissions);
-
-    //     foreach ($permissions as $roleId => $departmentPermissions) {
-    //         $role = Role::find($roleId);
-
-    //         foreach ($departmentPermissions as $departmentId => $isChecked) {
-    //             $permissionName = "modify_{$departmentId}";
-
-    //             if ($isChecked) {
-    //                 $role->givePermissionTo($permissionName);
-    //             } else {
-    //                 // Log the permissionName for debugging
-    //                 info("Revoking permission: $permissionName");
-    //                 $role->revokePermissionTo($permissionName);
-    //             }
-    //         }
-    //     }
-    //     // Redirect back or handle the response as needed
-    //     return redirect()->back()->with('message', 'Permissions updated successfully');
-    // }
-
+    //Modify access for each role, add and remove permissions.
     public function modAccess(Request $request)
-{
-    $permissions = $request->input('permissions');
+    {
+        $permissions = $request->input('permissions');
 
-    foreach ($permissions as $roleId => $departmentIds) {
-        $role = Role::find($roleId);
+        foreach ($permissions as $roleId => $departmentIds) {
+            $role = Role::find($roleId);
 
-        $permissionNames = array_map(function ($departmentId) {
-            return "modify_{$departmentId}";
-        }, $departmentIds);
+            $permissionNames = array_map(function ($departmentId) {
+                return "modify_{$departmentId}";
+            }, $departmentIds);
 
-        $role->syncPermissions($permissionNames);
+            $role->syncPermissions($permissionNames);
+        }
+
+        return redirect()->back()->with('message', 'Permissions updated successfully');
     }
-
-    return redirect()->back()->with('message', 'Permissions updated successfully');
 }
-
-
-
-
-}
-
-

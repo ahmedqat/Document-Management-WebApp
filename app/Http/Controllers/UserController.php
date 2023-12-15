@@ -10,29 +10,23 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-    //
-    public function index(){
+    //Show the user table, with their roles.
+    public function index()
+    {
 
 
         $users = User::all();
         $roles = Role::all();
 
 
-        return view('users.show',compact('users','roles'));
+        return view('users.index', compact('users', 'roles'));
     }
 
+    //Adding new user.
+    public function upload(AddUserRequest $request)
+    {
 
-    public function upload(AddUserRequest $request){
 
-
-       //dd($request->all());
-        // $formFields = $request->validateWithBag('user_upload',[
-
-        //     'id' => 'required',
-        //     'name' => 'required',
-        //     'email' => ['required','email'],
-        //     'role_id' => 'required',
-        // ]);
 
         $formFields = $request->validated();
 
@@ -46,20 +40,20 @@ class UserController extends Controller
 
         $user = User::create($formFields);
 
-        if($request->filled('role')){
+        if ($request->filled('role')) {
             $user->syncRoles($request->input('role'));
         }
 
-        //$user->syncRoles($request->input('role'));
+
 
         return  redirect()->back();
-
     }
     //Update User
-    public function update(Request $request, User $user){
+    public function update(Request $request, User $user)
+    {
 
 
-        $formFields = $request->validateWithBag('user_update',[
+        $formFields = $request->validateWithBag('user_update', [
 
             'edit_user_name' => 'required',
             'edit_user_email' => 'required',
@@ -84,13 +78,12 @@ class UserController extends Controller
         $user->syncRoles($formFields['edit_user_role']);
 
         return redirect()->back();
-
-
     }
 
     //delete user
 
-    public function delete(User $user){
+    public function delete(User $user)
+    {
         $user->delete();
         return redirect()->back();
     }

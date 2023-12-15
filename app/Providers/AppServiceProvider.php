@@ -23,6 +23,6 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         view()->share('departments',Department::all());
-        //view()->share('roles',Role::all());
+
     }
 }
