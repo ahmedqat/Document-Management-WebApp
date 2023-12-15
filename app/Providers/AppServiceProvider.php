@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Department;
 use App\Models\Role;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,7 +23,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
-        view()->share('departments',Department::all());
+
+        View::composer('*', function ($view) {
+            $view->with('departments', Department::all());
+        });
 
     }
 }

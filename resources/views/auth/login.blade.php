@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="Cache-Control" content="no-store">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XMUM Office Document</title>
-    <link rel="icon" type="image/png" href="{{ asset('assets/icons/Xiamen_University_logo.png') }}">
+    <title>Office Document</title>
+    <link rel="icon" type="image/png" href="{{ asset('assets/icons/logo.png') }}">
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -20,36 +20,11 @@
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.js"></script>
 
-
-
-
-
-
-
-
-
-
-    {{-- @vite(['resources/js/file.js'])
-    @vite(['resources/js/plugins.bundle.js'])
-    @vite(['resources/js/scripts.bundle.js']) --}}
-
     <link rel="stylesheet" href="{{ asset('assets/styles/main_page.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/styles/plugins.bundle.css') }}" type="text/css" />
 </head>
 
 <body>
-    <!-- Navigation Bar -->
-    <!-- <nav class="navbar navbar-white">
-        <div class="container-fluid"> -->
-    <!-- Main Icon -->
-    <!-- <div class="navbar-brand-div">
-                <a class="navbar-brand" href="#">
-                    <div class="xmu-icon xmu-icon-app"></div>
-                </a>
-            </div>
-        </div>
-    </nav> -->
-
 
     <!-- Body Content -->
     <div class="container-fluid container-fluid-wrap login-background">
@@ -99,8 +74,6 @@
                                 <button type="submit" class="btn btn-login" data-users-modal-action="submit">
                                     Login
                                 </button>
-                                <!-- Currently use <a> to link to index page-->
-                                {{-- <a class="btn btn-login" href="index.html">Login</a> --}}
                             </div>
 
                         </form>

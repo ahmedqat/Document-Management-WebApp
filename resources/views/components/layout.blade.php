@@ -6,8 +6,8 @@
     <meta http-equiv="Cache-Control" content="no-store">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XMUM Office Document</title>
-    {{--
-    <link rel="icon" type="image/png" href="{{ asset('assets/icons/Xiamen_University_logo.png') }}"> --}}
+
+    <link rel="icon" type="image/png" href="{{ asset('assets/icons/logo.png') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -34,7 +34,7 @@
             <!-- Main Icon -->
             <div class="navbar-brand-div">
                 <a class="navbar-brand" href="/">
-                    {{-- <img src="{{ asset('assets/icons/linc-logo.png') }}" class="xmu-icon"> --}}
+                    <img src="{{ asset('assets/icons/linc-logo.png') }}" class="xmu-icon">
                 </a>
             </div>
             <!-- Profile Icon -->
